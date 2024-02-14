@@ -1,0 +1,8 @@
+node_modules
+sam.yaml
+sam.json
+preferences.arc
+prefs.arc
+
+.env
+.uploaded-images

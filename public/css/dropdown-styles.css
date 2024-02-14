@@ -1,0 +1,52 @@
+/* dropdown div is datalist */
+
+.datalist__styles {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  border: 1px solid var(--lightGrey);
+}
+
+/* dropdown item is a tag */
+
+.dropdown__item {
+  border-bottom: 1px solid var(--lightGrey);
+  background: white;
+  padding: 1rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  border-left: 10px solid "white";
+  img {
+    margin-right: 10px;
+  }
+}
+
+.dropdown__item:hover {
+  background: #f7f7f7;
+  padding-left: 2rem;
+  border-left: 10px solid var(--lightGrey);
+}
+
+.search__styles {
+  position: relative;
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    font-size: 2rem;
+    &.loading {
+      animation: glow 0.5s ease-in-out infinite alternate;
+    }
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 0px yellow;
+  }
+
+  to {
+    box-shadow: 0 0 10px 1px yellow;
+  }
+}
