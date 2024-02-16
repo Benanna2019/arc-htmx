@@ -8,11 +8,17 @@ async function index(request) {
   let state = await arc.http.session.read(request);
   let isLoggedIn = !!state.person;
 
+  console.log("request from product id", request);
+
+  const queryParams = request.params.productId
+    ? request.params.productId
+    : request.query.productId;
+
   const singleProductPage = html`
     <div
       id="product-info"
       hx-get="/single-product"
-      hx-vals='{"id": "${request.params.productId}"}'
+      hx-vals='{"id": "${queryParams}"}'
       hx-swap="innerHTML"
       hx-trigger="load"
     ></div>

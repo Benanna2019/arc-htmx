@@ -14,7 +14,7 @@ export type Product = {
   key: string;
   name: string;
   description: string;
-  image: string;
+  photo: { id: string; image: string };
   status: string;
   price: number;
   user_id: string;

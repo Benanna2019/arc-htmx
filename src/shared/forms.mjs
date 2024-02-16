@@ -188,18 +188,28 @@ const imageUpload = html`
       hx-target="#imageUploadForm"
       hx-swap="outerHTML transition:true"
     />
-    </div>
   </div>
 `;
 
 export const createProductForm = html`
-  ${imageUpload}
   <form
     class="create__product__form"
-    method="post"
-    action="/create/product"
-    hx-boost="true"
+    hx-post="/create/product"
+    hx-swap="innerHTML"
   >
+    <div id="imageUploadForm" class="upload__product__image__form">
+      <label for="productImage"> Upload Image </label>
+      <input
+        hidden
+        id="productImage"
+        type="file"
+        name="productImage"
+        hx-encoding="multipart/form-data"
+        hx-post="/create/product/image"
+        hx-target="#imageUploadForm"
+        hx-swap="outerHTML transition:true"
+      />
+    </div>
     <fieldset>
       <label for="productName">
         Name:

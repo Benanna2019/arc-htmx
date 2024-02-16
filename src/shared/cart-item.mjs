@@ -1,7 +1,7 @@
 import { html } from "./html-helper.mjs";
 import { formatMoney } from "../lib/formatMoney.mjs";
 
-function removeFromCart({ id }) {
+export function removeFromCart({ id }) {
   if (!id) {
     return null;
   }
@@ -9,7 +9,8 @@ function removeFromCart({ id }) {
   return html`
     <button
       class="big__button"
-      hx-post="/cart/${id}/remove"
+      hx-delete="/cart/${id}"
+      hx
       title="Remove This Item from Cart"
     >
       &times;
@@ -30,14 +31,22 @@ export function cartItem(item, show = false) {
       />
       <div>
         <h3>${product?.name}</h3>
-        <p>
+        <p class="cart_item_${product?.key}_quantity_price">
           ${item?.quantity && formatMoney(product?.price * item?.quantity)}-
           <em>
             ${item?.quantity} &times; ${formatMoney(product?.price)} each
           </em>
         </p>
       </div>
-      ${removeFromCart({ id: item.key })}
+      <button
+        class="big__button"
+        hx-delete="/cart/${item.key}"
+        hx-target="#cart_item_${product?.key}"
+        hx-swap="delete"
+        title="Remove This Item from Cart"
+      >
+        &times;
+      </button>
     </li>
   `;
 }

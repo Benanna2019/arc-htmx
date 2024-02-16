@@ -74,9 +74,6 @@
 }
 
 .upload__product__image__form {
-  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
-  background: rgba(0, 0, 0, 0.02);
-  border: 5px solid white;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

@@ -1,6 +1,7 @@
 import { formatMoney } from "../lib/formatMoney.mjs";
 import { html } from "./html-helper.mjs";
 import { ownerOfProduct } from "../lib/models/product-model.mjs";
+// import { set } from "lodash";
 
 export default function productCard(product, session) {
   const {
@@ -11,6 +12,7 @@ export default function productCard(product, session) {
     owner,
     description: product_description,
   } = product;
+
   const user_email = session?.person?.email;
 
   const user_can_edit = ownerOfProduct(owner, user_email)
@@ -31,9 +33,7 @@ export default function productCard(product, session) {
         id="add_${product_key}_to_cart"
         name="product_id"
         hx-vals='{"product_id": "${product_key}"}'
-        hx-trigger="click"
-        hx-target=".red__dot"
-        hx-swap="innerHTML"
+        hx-swap="none"
       >
         Add To Cart
       </button>

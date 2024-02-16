@@ -14,10 +14,8 @@ get /orders
 get /orders/:orderId
 get /edit/:productId
 get /cart-count
-get /cart/open/addToCart
 get /images/*
 post /cart/add
-post /cart/delete
 post /login
 post /signup
 post /signup/validate/email
@@ -28,6 +26,7 @@ post /close-cart
 post /create/product
 post /create/product/image
 post /checkout
+delete /cart/:itemId
 
 @aws
 # profile default

@@ -4,10 +4,12 @@ import { cart } from "@architect/shared/cart.mjs";
 
 export const handler = arc.http.async(closeCart);
 
-async function closeCart() {
-  let cartPage = html`<div id="cart-dialog"></div>`;
+async function closeCart(request) {
+  let state = await arc.http.session.read(request);
 
-  let dialog = cartPage;
+  let closeCart = html` ${cart({ person: state.person, show: false })} `;
+
+  let dialog = closeCart;
 
   return {
     html: dialog,

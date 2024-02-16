@@ -4,7 +4,6 @@ import {
   getCartCount,
   buildCartItemDataObject,
   upsertCartItem,
-  validateCartItem,
 } from "../../lib/models/cart-model.mjs";
 
 export const handler = arc.http.async(incrementCart);
@@ -36,6 +35,6 @@ async function incrementCart(request) {
       ...request.session,
       person: { ...updatedUser },
     },
-    html: html`<span>${count}</span>`,
+    html: html`<span hx-swap-oob="innerHTML:.red__dot">${count}</span>`,
   };
 }

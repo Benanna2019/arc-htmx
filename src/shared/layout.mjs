@@ -21,11 +21,7 @@ export default function layout({
       <a href="/">Products</a>
       <a href="/sell">Sell</a><a href="/orders">Orders</a
       ><a href="/logout">Sign Out</a
-      ><a
-        hx-post="/show-cart"
-        hx-target="body"
-        hx-swap="beforeend"
-        hx-headers='{"show-dialog": "true"}'
+      ><a hx-post="/show-cart" hx-target="body" hx-swap="beforeend"
         >My Cart${cartCount({ count })}</a
       >
     `;

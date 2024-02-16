@@ -4,32 +4,34 @@ import { CartItem } from "./schema/cartItem.mjs";
 import { updateUserCart, getUserByEmail } from "./user.mjs";
 import { findProductById } from "./product-model.mjs";
 import { createId } from "@paralleldrive/cuid2";
+import remove from "lodash/fp/remove.js";
 
 export async function removeFromCart(email, cartItemKey) {
   try {
     // Step 1: Retrieve the user object from the database
+
     const user = await getUserByEmail(email);
+
+    console.log("user", user);
+
     if (!user) {
       throw new Error("User not found");
     }
-
-    // Step 2: Ensure the user has a cart to modify
-    if (!user.cart || user.cart.length === 0) {
-      throw new Error("No items in cart");
-    }
-
-    // Step 3: Find the index of the cart item with the given key
     const itemIndex = user.cart.findIndex((item) => item.key === cartItemKey);
+
+    console.log("itemIndex", itemIndex);
+
+    let cart = user.cart;
 
     // If the item exists, remove it from the cart
     if (itemIndex > -1) {
-      user.cart.splice(itemIndex, 1);
+      cart = remove((item) => item.key === cartItemKey, cart);
     } else {
       throw new Error("Cart item not found");
     }
 
     // Step 4: Update the user's cart in the database
-    const updatedUser = await updateUserCart(user);
+    const updatedUser = await updateUserCart(user.key, cart);
     return updatedUser;
   } catch (error) {
     console.error("Error removing item from cart:", error.message);
@@ -81,6 +83,7 @@ export async function upsertCartItem(cartItem) {
   try {
     const [user] = await getUserByEmail(cartItem.email);
     if (!user) {
+      // return html for an error
       throw new Error("User not found");
     }
     if (!user.cart) {
@@ -100,11 +103,10 @@ export async function upsertCartItem(cartItem) {
       }
       cartItem.key = createId();
       cartItem.product = product;
-
       user.cart.push(cartItem);
     }
 
-    const updatedUser = await updateUserCart(user.id, user.cart);
+    const updatedUser = await updateUserCart(user.key, user.cart);
     return updatedUser;
   } catch (error) {
     console.error("Error adding to cart:", error.message);

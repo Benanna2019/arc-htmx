@@ -6,7 +6,8 @@ h1 {
   background: red;
   transform: skew(-7deg);
 
-  & a {
+  & a,
+  button {
     color: white;
     text-decoration: none;
     text-transform: uppercase;

@@ -1,42 +1,92 @@
 import arc from "@architect/functions";
 import { html } from "@architect/shared/html-helper.mjs";
-import { createId } from "@paralleldrive/cuid2";
+import {
+  buildProductData,
+  createProduct,
+} from "../../lib/models/product-model.mjs";
 
-export const handler = arc.http.async(createProduct);
+export const handler = arc.http.async(newProduct);
 
-async function createProduct(req) {
+async function newProduct(req) {
   const session = req.session;
+  const { productImage, productName, description, price } = req.body;
+  console.log("req.body", req.body);
 
-  // I need to create a model for creating a product to validate the incoming request
-  // I need an additional created at attribute
-  // set the user id as the session.person.email since the email is the ddb key
-  // need to add a key with createId()
-  // set status to available. Need to figure out how I would handle the status of the product.
-  // Probably need to make the 'edit product' page where a user who owns the product can change the status.
-
-  // if there is no product image on the req body, return an error message.
-  // maybe I need to have a default input for the image that is required so if the user doesn't upload an image, the form will not submit.
-
-  // swap out 'main', so if there is an error we can send back the full form.
-
-  let processedImageHTML = html`
-    <div id="processedImageDiv">
-      <img
-        src="/images/${filename}.jpeg"
-        alt="product picture"
-        class="uploadedImage"
-      />
+  let formWithData = html`
+    <div id="imageUploadForm" class="upload__product__image__form">
+      <label for="productImage"> Upload Image </label>
       <input
-        type="hidden"
+        hidden
+        id="productImage"
+        type="file"
         name="productImage"
-        id="uploadedProductImageUrl"
-        value="${filename}"
+        hx-encoding="multipart/form-data"
+        hx-post="/create/product/image"
+        hx-target="#imageUploadForm"
+        hx-swap="outerHTML transition:true"
       />
     </div>
+    ${!productImage
+      ? html`<p class="error__message">
+          Please upload an image for the product
+        </p>`
+      : ""}
+    <fieldset>
+      <label for="productName">
+        Name:
+        <input
+          type="text"
+          name="productName"
+          value="${productName ? productName : ""}"
+          placeholder="Product Name"
+          required
+        />
+      </label>
+      <label for="price">
+        Price:
+        <input
+          type="number"
+          name="price"
+          value="${price ? price : ""}"
+          placeholder="Product Price"
+          required
+        />
+      </label>
+      <label for="description">
+        Description:
+        <textarea
+          type="text"
+          name="description"
+          value="${description ? description : ""}"
+          placeholder="Product Description"
+        ></textarea>
+      </label>
+      <button type="submit">+ Add Product</button>
+    </fieldset>
   `;
 
+  if (!productImage || !productName || !price) {
+    return {
+      html: formWithData,
+    };
+  }
+
+  // build product data
+
+  const builtProduct = buildProductData({
+    name: productName,
+    description,
+    price,
+    photo: productImage,
+    email: session.person.email,
+  });
+
+  const product = await createProduct(builtProduct);
+
   return {
-    // session: { ...newSession },
-    html: processedImageHTML,
+    headers: {
+      //prettier-ignore
+      "HX-Location": `/${product.key}`,
+    },
   };
 }

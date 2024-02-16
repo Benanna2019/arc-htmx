@@ -14,7 +14,6 @@ export function cart({ person, show = false }) {
       <button
         class="close__button"
         hx-post="/close-cart"
-        hx-trigger="click"
         hx-target="#cart-dialog"
         hx-swap="delete"
       >

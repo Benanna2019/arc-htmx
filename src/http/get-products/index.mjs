@@ -9,10 +9,8 @@ import drop from "lodash/fp/drop.js";
 export const handler = arc.http.async(products);
 
 async function products(request) {
-  const allProducts = await data.get({ table: "products" });
+  const allProducts = await data.get({ table: "products", limit: 25 });
   const PER_PAGE = 2;
-
-  console.log("request query", request.query.page);
 
   const page = Number(request.query.page) || 1;
   console.log("page", page);

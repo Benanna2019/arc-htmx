@@ -49,8 +49,7 @@ export async function verifyLogin(email, password) {
 }
 
 export async function updateUserCart(userId, cart) {
-  const [user] = await getUserById(userId);
-  console.log("user", user);
+  const user = await getUserById(userId);
   const updatedUser = data.set({
     table: "users",
     key: userId,
