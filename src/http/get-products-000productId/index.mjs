@@ -8,8 +8,6 @@ async function index(request) {
   let state = await arc.http.session.read(request);
   let isLoggedIn = !!state.person;
 
-  console.log("request from product id", request);
-
   const queryParams = request.params.productId
     ? request.params.productId
     : request.query.productId;

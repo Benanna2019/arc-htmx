@@ -8,7 +8,7 @@ get /login
 get /logout
 get /products
 get /single-product
-get /:productId
+get /products/:productId
 get /sell
 get /orders
 get /orders/:orderId

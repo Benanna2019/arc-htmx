@@ -35,6 +35,6 @@ async function incrementCart(request) {
       ...request.session,
       person: { ...updatedUser },
     },
-    html: html`<span hx-swap-oob="innerHTML:.red__dot">${count}</span>`,
+    html: html`<span hx-swap-oob="innerHTML:.count__dot">${count}</span>`,
   };
 }

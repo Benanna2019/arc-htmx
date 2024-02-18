@@ -22,7 +22,7 @@ export default function productCard(product, session) {
   return html` <div class="item__styles">
     <img src="${photo.image}" alt="${product_name}" />
     <h3 class="product__title">
-      <a href="/${product_key}" hx-boost="true">${product_name}</a>
+      <a href="/products/${product_key}" hx-boost="true">${product_name}</a>
     </h3>
     <span class="price__tag">${formatMoney(product_price)}</span>
     <p>${product_description}</p>

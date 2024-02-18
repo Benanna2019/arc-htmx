@@ -2,6 +2,7 @@ import { html } from "./html-helper.mjs";
 import { cartItem } from "./cart-item.mjs";
 import { formatMoney } from "../lib/formatMoney.mjs";
 import { calcTotalPrice } from "../lib/calc-total-price.mjs";
+import { checkoutForm } from "./checkout.mjs";
 
 export function cart({ person, show = false }) {
   return html`
@@ -28,6 +29,7 @@ export function cart({ person, show = false }) {
       </ul>
       <footer>
         <p>${formatMoney(calcTotalPrice(person?.cart))}</p>
+        ${checkoutForm}
       </footer>
     </div>
   `;

@@ -13,7 +13,7 @@
     position: relative;
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 1em;
+    font-size: 0.6em;
     background: none;
     border: 0;
     cursor: pointer;
@@ -34,7 +34,7 @@
     }
     &:after {
       height: 2px;
-      background: red;
+      background: #4f439d;
       content: "";
       width: 0;
       position: absolute;

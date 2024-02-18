@@ -46,7 +46,7 @@
   button,
   input[type="submit"] {
     width: auto;
-    background: red;
+    background: #4f439d;
     color: white;
     border: 0;
     font-size: 2rem;
@@ -66,9 +66,9 @@
       display: block;
       background-image: linear-gradient(
         to right,
-        #ff3019 0%,
+        #4f439d 0%,
         #e2b04a 50%,
-        #ff3019 100%
+        #4f439d 100%
       );
     }
     &[aria-busy="true"]::before {

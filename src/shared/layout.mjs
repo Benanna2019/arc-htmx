@@ -1,8 +1,8 @@
 import { getCartCount } from "../lib/models/cart-model.mjs";
 import { cartCount } from "./cart-count.mjs";
-// import { cart } from "./cart.mjs";
 import { html } from "./html-helper.mjs";
 import { searchResults } from "./search.mjs";
+import arc from "@architect/functions";
 
 export default function layout({
   contents,
@@ -37,7 +37,7 @@ export default function layout({
       <header hx-boost="true">
         <div class="bar">
           <h1>
-            <a href="/">Sick Fits</a>
+            <a href="/">Throwback Games</a>
           </h1>
           <div>
             <ul class="nav__list">
@@ -54,16 +54,15 @@ export default function layout({
 	<html>
 	<head>
 		<title>Architect demo app</title>
-		<link rel="stylesheet" href="_static/css/styles.css">
+		<link rel="stylesheet" href="${arc.static("/css/styles.css")}">
         <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
-		
-		
+		<script src="https://js.stripe.com/v3/" defer></script>
 	</head>
 	<style>
 	@font-face {
-		font-family: "radnika_next";
-		src: url("_static/fonts/radnikanext-medium-webfont.woff2") format("woff2");
+		font-family: "kongtext";
+		src: url("${arc.static("/fonts/kongtext.ttf")}") format("woff");
 		font-weight: normal;
 		font-style: normal;
 	  }
@@ -92,7 +91,7 @@ export default function layout({
 	  }
 	  
 	  body {
-		font-family: "radnika_next", ---apple-system, BlinkMacSystemFont, "Segoe UI",
+		font-family: "kongtext", ---apple-system, BlinkMacSystemFont, "Segoe UI",
 		  Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 		padding: 0;
 		margin: 0;
@@ -121,7 +120,7 @@ export default function layout({
 	  }
 	  
 	  button {
-		font-family: "radnika_next", ---apple-system, BlinkMacSystemFont, "Segoe UI",
+		font-family: "kongtext", ---apple-system, BlinkMacSystemFont, "Segoe UI",
 		  Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	  }
 	</style>
@@ -131,6 +130,7 @@ export default function layout({
 			${nav}
 			<main class="outlet__div">
 				${contents}
+
 			</main>
 		</body>
 	</html>`;

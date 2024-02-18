@@ -71,8 +71,6 @@ async function newProduct(req) {
     };
   }
 
-  // build product data
-
   const builtProduct = buildProductData({
     name: productName,
     description,
@@ -86,7 +84,7 @@ async function newProduct(req) {
   return {
     headers: {
       //prettier-ignore
-      "HX-Location": `/${product.key}`,
+      "HX-Location": `/products/${product.key}`,
     },
   };
 }

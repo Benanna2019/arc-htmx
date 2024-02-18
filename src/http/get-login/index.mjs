@@ -7,7 +7,6 @@ export const handler = arc.http.async(login);
 
 // show the login page
 async function login(request) {
-  console.log("headers", request.headers);
   let loginForm = signInForm();
 
   let signUpSection = defaultSignUpForm({ action: "signup" });

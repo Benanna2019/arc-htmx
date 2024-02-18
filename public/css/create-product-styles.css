@@ -19,13 +19,13 @@
     border: 1px solid black;
     &:focus {
       outline: 0;
-      border-color: var(--red);
+      border-color: #4f439d;
     }
   }
   button,
   input[type="submit"] {
     width: auto;
-    background: red;
+    background: #4f439d;
     color: white;
     border: 0;
     font-size: 2rem;
@@ -34,8 +34,6 @@
   }
   fieldset {
     border: 0;
-    padding: 0;
-
     &[disabled] {
       opacity: 0.5;
     }
@@ -45,9 +43,9 @@
       display: block;
       background-image: linear-gradient(
         to right,
-        #ff3019 0%,
+        #4f439d 0%,
         #e2b04a 50%,
-        #ff3019 100%
+        #4f439d 100%
       );
     }
     &[aria-busy="true"]::before {
@@ -84,14 +82,14 @@
   line-height: 1.5;
   font-weight: 600;
   label {
-    background-color: #ec3333;
+    background-color: #4f439d;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
     border: 1px ridge black;
     height: auto;
     &:hover {
-      background-color: #2d5ba3;
+      background-color: #e9a24a;
       color: white;
     }
   }

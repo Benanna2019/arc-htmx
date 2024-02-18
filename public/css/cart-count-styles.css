@@ -2,8 +2,8 @@
   position: relative;
 }
 
-.red__dot {
-  background: var(--red);
+.count__dot {
+  background: #4f439d;
   color: white;
   border-radius: 50%;
   display: flex;

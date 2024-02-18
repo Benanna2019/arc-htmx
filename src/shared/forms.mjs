@@ -175,21 +175,21 @@ export const pleaseSignIn = html` <a href="/login" hx-boost="true">
   SignIn
 </a>`;
 
-const imageUpload = html`
-  <div id="imageUploadForm" class="upload__product__image__form">
-    <label for="productImage"> Upload Image </label>
-    <input
-      hidden
-      id="productImage"
-      type="file"
-      name="productImage"
-      hx-encoding="multipart/form-data"
-      hx-post="/create/product/image"
-      hx-target="#imageUploadForm"
-      hx-swap="outerHTML transition:true"
-    />
-  </div>
-`;
+// const imageUpload = html`
+//   <div id="imageUploadForm" class="upload__product__image__form">
+//     <label for="productImage"> Upload Image </label>
+//     <input
+//       hidden
+//       id="productImage"
+//       type="file"
+//       name="productImage"
+//       hx-encoding="multipart/form-data"
+//       hx-post="/create/product/image"
+//       hx-target="#imageUploadForm"
+//       hx-swap="outerHTML transition:true"
+//     />
+//   </div>
+// `;
 
 export const createProductForm = html`
   <form
